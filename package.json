@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "alexa-app-server": "git+https://git@github.com/alexa-js/alexa-app-server.git"
+  },
+  "devDependencies": {
+    "eslint": "^4.13.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "nodemon": "^1.12.5"
+  },
+  "engines": {
+    "node": "9.2.1"
+  },
+  "scripts": {
+    "start": "nodemon index.js",
+    "lint": "./node_modules/.bin/eslint .",
+    "deploy": "apex deploy --region us-east-1"
+  }
+}

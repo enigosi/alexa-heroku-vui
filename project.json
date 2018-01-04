@@ -1,0 +1,8 @@
+{
+  "name": "heroku-vui",
+  "description": "function handling Heroku platform API app",
+  "runtime": "nodejs6.10",
+  "memory": 128,
+  "timeout": 5,
+  "role": "arn:aws:iam::118421916229:role/alexa_lambda_function"
+}
