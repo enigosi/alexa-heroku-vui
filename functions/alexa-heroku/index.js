@@ -1,4 +1,4 @@
+const app = require('./src/app');
 
-exports.handle = (event, context, callback) => {
-  callback(null, { done: true });
-};
+// connect the alexa-app to AWS Lambda
+exports.handle = app.lambda();

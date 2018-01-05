@@ -1,0 +1,9 @@
+{
+  "name": "heroku-vui",
+  "description": "function handling Heroku platform API app",
+  "main": "./src/app.js",
+  "dependencies": {
+    "alexa-app": "^3.1.0"
+  },
+  "author": "Wojciech Romanski (enigosi@gmail.com)"
+}

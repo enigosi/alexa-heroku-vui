@@ -1,7 +1,12 @@
 {
-  "name": "heroku-vui",
-  "description": "function handling Heroku platform API app",
   "runtime": "nodejs6.10",
+  "handler": "lib/index.handle",
+  "hooks": {
+    "build": "../../node_modules/.bin/webpack --config ../../webpack.config.js --bail",
+    "clean": "rm -fr lib"
+  },
+  "name": "heroku-vui",
+  "description": "Amazon Alexa Heroku platform API app",
   "memory": 128,
   "timeout": 5,
   "role": "arn:aws:iam::118421916229:role/alexa_lambda_function"
