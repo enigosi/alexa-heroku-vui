@@ -3,7 +3,12 @@
   "description": "function handling Heroku platform API app",
   "main": "./src/app.js",
   "dependencies": {
-    "alexa-app": "^3.1.0"
+    "alexa-app": "^3.1.0",
+    "heroku-client": "^3.0.6",
+    "lodash-fp": "^0.10.4"
+  },
+  "scripts": {
+    "schema": "node ./src/schema-generator"
   },
   "author": "Wojciech Romanski (enigosi@gmail.com)"
 }

@@ -1,7 +1,7 @@
+/* eslint-disable no-console */
 const app = require('./app');
 
 // get schema and utterances - copy & paste to alexa interaction mdoel
-
 console.log('SCHEMA: ');
 console.log(app.schema());
 

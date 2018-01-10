@@ -1,4 +1,5 @@
 const alexa = require('alexa-app');
+const intentHandlers = require('./intent-handlers');
 
 // eslint-disable-next-line new-cap
 const app = new alexa.app('alexa-heroku');
@@ -7,15 +8,16 @@ app.launch((request, response) => {
   response.say('Hello');
 });
 
-app.intent(
-  'testNumber', {
-    slots: { number: 'AMAZON.NUMBER' },
-    utterances: ['say the test number {-|number}'],
+app.intent('AppStatus', {
+  slots: {
+    VALUE: 'AMAZON.Animal',
   },
-  (request, response) => {
-    const number = request.slot('number');
-    response.say(`${number}`);
-  },
-);
+  utterances: [
+    'what is the status of {APP_NAME}',
+    'what is the status of {APP_NAME} app',
+    'how is {APP_NAME} doing',
+  ],
+}, (req, res) => intentHandlers.handleAppStatusIntent(req, res));
+
 
 module.exports = app;
