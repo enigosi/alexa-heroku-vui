@@ -1,7 +1,12 @@
 {
     "extends": "airbnb-base",
     "rules": {
-      "import/no-extraneous-dependencies": ["error", {"devDependencies": [".functions/alexa-heroku/src/test/**"]}]
+      "import/no-extraneous-dependencies": ["error", {
+        "devDependencies": [
+          ".functions/alexa-heroku/src/test/**",
+          "./webpack.config.js"
+        ]
+      }]
     },
     "env": {
       "node": true,
