@@ -92,7 +92,7 @@ describe('Intent Handlers', () => {
       sinon.assert.callCount(fakeRes.say, 2);
       sinon.assert.calledWith(fakeRes.say, 'The status of app jaguar staging is crashed');
       sinon.assert.calledWith(fakeRes.say, 'The status of app jaguar production is crashed');
-      sinon.assert.calledWith(fakeReq.slot, 'VALUE');
+      sinon.assert.calledWith(fakeReq.slot, 'APP_NAME');
     });
   });
 });

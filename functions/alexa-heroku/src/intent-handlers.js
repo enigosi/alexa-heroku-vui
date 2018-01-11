@@ -11,7 +11,7 @@ module.exports.handleAppStatusIntent = async function handleAppStatusIntent(req,
 
     const allApps = await herokuService.getAllApps(heroku);
 
-    const appName = req.slot('VALUE');
+    const appName = req.slot('APP_NAME');
     const foundApps = allApps.filter(app => app.configVars.ALEXA_HEROKU_NAME === appName);
 
     if (!foundApps.length) {

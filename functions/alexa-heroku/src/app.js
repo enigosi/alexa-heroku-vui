@@ -10,7 +10,7 @@ app.launch((request, response) => {
 
 app.intent('AppStatus', {
   slots: {
-    VALUE: 'AMAZON.Animal',
+    APP_NAME: 'AMAZON.Animal',
   },
   utterances: [
     'what is the status of {APP_NAME}',
