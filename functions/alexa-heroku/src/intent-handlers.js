@@ -19,7 +19,7 @@ module.exports.handleAppStatusIntent = async function handleAppStatusIntent(req,
     }
 
     // NOTE each app on heroku has a dyno
-    const foundDynos = await herokuService.getDynosByAppIds(foundApps.map(app => app.id));
+    const foundDynos = await herokuService.getDynosByAppIds(heroku, foundApps.map(app => app.id));
 
     // NOTE for now i am assuming that each app is on right pipeline
     const pipelineCouplings = await herokuService.getAllPipelineCouplings(heroku);

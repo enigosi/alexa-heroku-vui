@@ -26,7 +26,8 @@
     "start": "nodemon index.js",
     "lint": "./node_modules/.bin/eslint .",
     "deploy": "apex deploy --region us-east-1",
-    "test": "./node_modules/.bin/mocha ./functions/alexa-heroku/src/test"
+    "test": "./node_modules/.bin/mocha ./functions/alexa-heroku/src/test",
+    "schema": "node ./functions/alexa-heroku/src/schema-generator"
   },
   "author": "Wojciech Romanski (enigosi@gmail.com)"
 }

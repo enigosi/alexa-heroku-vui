@@ -60,7 +60,7 @@ describe('Intent Handlers', () => {
       sandbox.stub(herokuService, 'getAllPipelineCouplings')
         .returns(Promise.resolve(GET_ALL_PIPELINE_COUPLINGS_EXPECTED));
       sandbox.stub(herokuService, 'getDynosByAppIds')
-        .callsFake((ids) => {
+        .callsFake((heroku, ids) => {
           const dynos = mocks.fakeDynos.filter(dyno => ids.includes(dyno.app.id));
           return Promise.resolve(dynos);
         });
@@ -86,6 +86,9 @@ describe('Intent Handlers', () => {
       sinon.assert.callCount(herokuService.getHerokuInstance, 1);
       sinon.assert.calledWith(herokuService.getHerokuInstance, FAKE_ACCESS_TOKEN);
       sinon.assert.calledWith(herokuService.getAllApps, fakeHerokuInstance);
+      sinon.assert.calledWith(herokuService.getAllPipelineCouplings, fakeHerokuInstance);
+      sinon.assert.calledWith(herokuService.getDynosByAppIds, fakeHerokuInstance, ['3', '4']);
+
       sinon.assert.callCount(fakeRes.say, 2);
       sinon.assert.calledWith(fakeRes.say, 'The status of app jaguar staging is crashed');
       sinon.assert.calledWith(fakeRes.say, 'The status of app jaguar production is crashed');
