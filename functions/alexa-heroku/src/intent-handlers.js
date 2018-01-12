@@ -7,15 +7,23 @@ module.exports.handleAppStatusIntent = async function handleAppStatusIntent(req,
   try {
     const { accessToken } = req.data.session.user;
     if (!accessToken) return res.say('Please log in to Heroku to use this skill');
+
+    const appName = req.slot('APP_NAME');
+    const appStage = req.slot('APP_STAGE');
+
     const heroku = herokuService.getHerokuInstance(accessToken);
 
     const allApps = await herokuService.getAllApps(heroku);
 
-    const appName = req.slot('APP_NAME');
-    const foundApps = allApps.filter(app => app.configVars.ALEXA_HEROKU_NAME === appName);
+    const foundApps = appName ?
+      allApps.filter(app => app.configVars.ALEXA_HEROKU_NAME === appName) :
+      allApps.filter(app => !!app.configVars.ALEXA_HEROKU_NAME);
 
     if (!foundApps.length) {
-      return res.say(`I was unable to find app ${appName}`);
+      const message = appName ?
+        `I was unable to find app ${appName}` :
+        'I was unable to find any apps';
+      return res.say(message);
     }
 
     // NOTE each app on heroku has a dyno
@@ -27,7 +35,10 @@ module.exports.handleAppStatusIntent = async function handleAppStatusIntent(req,
     foundApps.forEach((app) => {
       const foundDyno = foundDynos.find(dyno => dyno.app.id === app.id);
       const foundPipeLineCoupling = pipelineCouplings.find(coupling => coupling.app.id === app.id);
-      res.say(`The status of app ${appName} ${foundPipeLineCoupling.stage} is ${foundDyno.state}`);
+
+      if (appStage && appStage !== foundPipeLineCoupling.stage) return;
+
+      res.say(`The status of app ${app.configVars.ALEXA_HEROKU_NAME} ${foundPipeLineCoupling.stage} is ${foundDyno.state}`);
     });
   } catch (e) {
     // eslint-disable-next-line no-console
